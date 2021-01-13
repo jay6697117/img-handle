@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图片本地预览示例</title>
+  </head>
+  <body>
+    <h3>阿宝哥:图片本地预览示例</h3>
+    <input type="file" accept="image/*" onchange="loadFile(event)" />
+    <img id="previewContainer" />
+    <script>
+      const loadFile = function (event) {
+        console.log('event :>> ', event);
+        const reader = new FileReader();
+        console.log('reader :>> ', reader);
+
+        reader.onload = function (res) {
+          console.log('res :>> ', res);
+          const output = document.querySelector('#previewContainer'); //创建dom
+          output.src = res.target.result; //给dom添加src属性
+        };
+
+        reader.readAsDataURL(event.target.files[0]);
+      };
+    </script>
+  </body>
+</html>
